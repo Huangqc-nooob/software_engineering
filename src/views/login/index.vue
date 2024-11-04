@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form :model="form" class="login-form" :rules="rules">
+    <el-form ref="formRef" :model="form" class="login-form" :rules="rules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -22,6 +22,7 @@
 <script setup>
 import { ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
+import { login } from '@/api/login'
 const form = ref({
   name: '',
   password: ''
@@ -31,6 +32,19 @@ const rules = ref({
   name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 })
+
+const formRef = ref(null)
+const handleLogin = () => {
+  formRef.value.validate(async (valid) => {
+    if (valid) {
+      // alert('submit!!')
+      await login(form.value)
+    } else {
+      console.log('error submit!!')
+      return false
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
