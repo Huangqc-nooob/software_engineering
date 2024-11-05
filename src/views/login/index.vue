@@ -4,9 +4,9 @@
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item prop="name">
+      <el-form-item prop="username">
         <el-icon :size="20" class="svg-container"><User /></el-icon>
-        <el-input v-model="form.name"
+        <el-input v-model="form.username"
       /></el-form-item>
       <el-form-item prop="password">
         <el-icon :size="20" class="svg-container"><Lock /></el-icon>
@@ -24,12 +24,12 @@ import { ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import { login } from '@/api/login'
 const form = ref({
-  name: '',
+  username: '',
   password: ''
 })
 
 const rules = ref({
-  name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 })
 
